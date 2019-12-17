@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>kq商品管理系统</title>
+    <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./libs/jquery-3.4.1.min.js"></script>
+    <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./libs/utils.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">KQ商品管理系统</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">首页</a></li>
+                    <li><a href="#">其他页面</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right loginUser">
+                    <li data-toggle="modal" data-target="#login"><a href="#">登录</a></li>
+                    <li data-toggle="modal" data-target="#reg"><a href="#">注册</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right loginUser hidden">
+                    <li><a href="">欢迎您，<b id="loginedUser">dary</b></a></li>
+                    <li><a href="#" id="cancelUser">注销</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+        <button class="btn btn-primary btn-add" data-toggle="modal" data-target="#addModal">添加商品</button>
+        <table class="table table-striped table-bordered table-hover table-condensed table-shop">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>商品名称</th>
+                    <th>商品价格</th>
+                    <th>商品库存</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="list-tbody">
+            </tbody>
+        </table>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">添加商品</h4>
+                </div>
+                <div class="modal-body form-horizontal">
+                    <div class="form-group">
+                        <label for="inputName" class="col-sm-2 control-label">商品名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputName" placeholder="请输入商品名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPrice" class="col-sm-2 control-label">商品价格</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="inputPrice" placeholder="请输入商品价格">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputNum" class="col-sm-2 control-label">商品数量</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="inputNum" placeholder="请输入商品数量">
+                        </div>
+                    </div>
+                    <p id="add-info" class="text-center"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="btn-add">添加</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Login -->
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog contentstyleF" role="document">
+            <div class="modal-content contentstyle">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="loginLabel">登陆</h4>
+                </div>
+                <div class="modal-body form-horizontal">
+                    <div class="form-group">
+                        <label for="inputNum" class="col-sm-2 control-label"><i class="glyphicon glyphicon-user"></i></label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="phoneLogin" placeholder="手机号">
+                        </div>
+                        <p class="errorPhL text-center">请输入正确的大陆手机号</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputNum" class="col-sm-2 control-label"><i class="glyphicon glyphicon-lock"></i></label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="pswLogin" placeholder="密码">
+                        </div>
+                        <p class="errorPsL text-center">请输入不小于6位的字符</p>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="checkbox" id="jizhu"><span>记住密码</span>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <span>忘记密码？</span>
+                        </div>
+                    </div>
+
+                    <p id="login-info" class="text-center"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btnLogin">登陆</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reg -->
+    <div class="modal fade" id="reg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog contentstyleF" role="document">
+            <div class="modal-content contentstyle">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="regLabel">注册</h4>
+                </div>
+                <div class="modal-body form-horizontal">
+                    <div class="form-group">
+                        <label for="inputNum" class="col-sm-2 control-label"><i class="glyphicon glyphicon-user"></i></label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="username" placeholder="用户名">
+                        </div>
+                        <p class="errorN text-center">用户名格式错误,最多7个汉字或者14个非汉字字符</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputNum" class="col-sm-2 control-label"><i class="glyphicon glyphicon-user"></i></label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="phoneReg" placeholder="手机号">
+                        </div>
+                        <p class="errorPh text-center">请输入正确的大陆手机号</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputNum" class="col-sm-2 control-label"><i class="glyphicon glyphicon-lock"></i></label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="pswReg" placeholder="密码">
+                        </div>
+                        <p class="errorPs text-center">请输入不小于6位的字符</p>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="yzmReg" placeholder="验证码">
+                        </div>
+                        <div class="col-sm-6">
+
+                            <button type="button" class="btn btn-default">获取短信验证码</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="checkbox" id="jieshou"><span>阅读并接受</span><a href="">版权保护协议</a>
+                        </div>
+                    </div>
+                    <p id="reg-info" class="text-center"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btnReg">注册</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/userconfig.js"></script>
+    <script src="./js/init.js"></script>
+    <script src="./js/register.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/select.js"></script>
+    <script src="./js/add.js"></script>
+    <script src="./js/delEdit.js"></script>
+</body>
+
+</html>

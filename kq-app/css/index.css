@@ -1,0 +1,54 @@
+.table-shop input {
+    display: none;
+    width: 80px;
+}
+
+.table-shop .btn-ok,
+.table-shop .btn-cancel {
+    display: none;
+}
+
+.edit input,
+.edit .btn-ok,
+.edit .btn-cancel {
+    display: inline-block;
+}
+
+.edit span,
+.edit .btn-edit,
+.edit .btn-del {
+    display: none;
+}
+
+.btn-add {
+    margin-bottom: 30px;
+}
+
+.contentstyle {
+    width: 300px;
+}
+
+.contentstyleF {
+    display: flex;
+    justify-content: center;
+}
+
+.btnLogin,
+.btnReg {
+    width: 100%;
+}
+
+.btn-default {
+    background-color: #ccc;
+}
+
+.errorN,
+.errorPh,
+.errorPsL,
+.errorPhL,
+.errorPs {
+    opacity: 0;
+    color: red;
+    font-size: 12px;
+    height: 12px;
+}
